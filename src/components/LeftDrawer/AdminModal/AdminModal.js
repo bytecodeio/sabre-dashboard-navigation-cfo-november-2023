@@ -15,6 +15,7 @@ import { AppAlertContext } from "../../Home";
 import { AppConfig } from "./AppConfig";
 import { DashboardSort } from "./DashboardSort";
 
+
 export const AdminModal = ({ isOpen, setIsOpen, appConfig, refreshPayload }) => {
   const { extensionSDK } = useContext(ExtensionContext);
   const setAppAlert = useContext(AppAlertContext);
@@ -50,7 +51,7 @@ export const AdminModal = ({ isOpen, setIsOpen, appConfig, refreshPayload }) => 
     }
   };
 
-  // 
+  //
   // console.log(tempAppConfig, "elizabeth")
   // console.log(isSavingConfig, "what is this")
 

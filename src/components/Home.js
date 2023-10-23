@@ -32,12 +32,13 @@ export const Home = () => {
   const [isLeftDrawerOpen, setIsLeftDrawerOpen] = useState(true);
   const [selectedDashboardId, setSelectedDashboardId] = useState();
   const [selectedDashboardFilters, setSelectedDashboardFilters] = useState();
-  const [isLoadingContextData, setIsLoadingContextData] = useState(true);
   const [fieldNameSuggestions, setFieldNameSuggestions] = useState([])
 
 
-  const [reload, setReload] = useState({});
+ const { isLoadingContextData, appConfig } = useExtensionContext();
 
+  // get application context data on load
+  const [reload, setReload] = useState({});
 
   useEffect(() => {
     const getSuggestions = (filter) => {
@@ -69,12 +70,11 @@ export const Home = () => {
   }, [selectedDashboardId]);
 
 
-
-
+  const [setIsLoadingContextData] = useState(true);
   const fallbackAppConfig = {
     showDashboardFilters: true,
     dashboardTheme: "Looker",
-    showTabIcons: true,
+    showTabIcons: false,
     tabs: [
       {
         name: "",
@@ -82,7 +82,7 @@ export const Home = () => {
       },
     ],
   };
-  const [appConfig, setAppConfig] = useState();
+  const [setAppConfig] = useState();
   const reloadPage = (val) => {
     setAppConfig({
       ...val,
@@ -90,7 +90,7 @@ export const Home = () => {
   };
   const getContextData = async () => {
 
-    console.log('refreshing it after ', appConfig)
+    console.log('refreshing it after ')
     setIsLoadingContextData(true);
     try {
       const contextData = await extensionSDK.getContextData();
@@ -110,6 +110,7 @@ export const Home = () => {
 
 
 
+  // check whether user is an admin user on load
   const [isCheckingAdminUser, setIsCheckingAdminUser] = useState(true);
   const [isAdminUser, setIsAdminUser] = useState(false);
   const checkAdminUser = async () => {
@@ -223,7 +224,7 @@ export const Home = () => {
 
    sdk.ok(sdk.dashboard(selectedDashboardId, 'dashboard_filters')).then((res) => {
 
-   // console.log(res, selectedDashboardId, "DASHBOARD FILTERS");
+   console.log(res, selectedDashboardId, "DASHBOARD FILTERS");
 
 
     })
@@ -232,10 +233,9 @@ export const Home = () => {
 
 
   useEffect(() => {
-    console.log('field Name Suggession', fieldNameSuggestions)
-  }, [fieldNameSuggestions]
-  )
-
+     console.log('field Name Suggession', fieldNameSuggestions)
+   }, [fieldNameSuggestions]
+   )
 
 
 

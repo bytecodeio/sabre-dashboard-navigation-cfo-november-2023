@@ -18,7 +18,7 @@ export const useExtensionContext = () => {
 
       setAppConfig({
 
-        
+
         showDashboardFilters: true,
         tabs: [],
         baseUrl: `${extensionSDK.lookerHostData.hostUrl}`,

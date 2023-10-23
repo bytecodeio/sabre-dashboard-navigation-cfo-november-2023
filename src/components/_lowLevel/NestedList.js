@@ -89,7 +89,7 @@ export const NestedList = ({
   };
 
 
-  // console.log(baseUrl, otherUrl, "elizabeth")
+  console.log(baseUrl, otherUrl, "elizabeth")
 
 
   return (

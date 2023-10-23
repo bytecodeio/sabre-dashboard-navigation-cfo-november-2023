@@ -1198,7 +1198,7 @@
   dependencies:
     "@looker/chatty" "^2.3.0"
 
-"@looker/extension-sdk-react@^21.18.1":
+"@looker/extension-sdk-react@^21.20.1":
   "integrity" "sha512-UmBP9feI580UztaD28USHPuGi0b84m7EtMyxhp3fdCGQkREmBfsyJwCBZPVPlbtnkfNO2cDUaeRx9kP4m5yVLA=="
   "resolved" "https://registry.npmjs.org/@looker/extension-sdk-react/-/extension-sdk-react-21.20.1.tgz"
   "version" "21.20.1"
@@ -3943,7 +3943,7 @@
   "resolved" "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz"
   "version" "4.0.8"
 
-"lodash@^4.17.11", "lodash@^4.17.14", "lodash@^4.17.19", "lodash@^4.17.20":
+"lodash@^4.17.11", "lodash@^4.17.14", "lodash@^4.17.19", "lodash@^4.17.20", "lodash@^4.17.21":
   "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
   "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"

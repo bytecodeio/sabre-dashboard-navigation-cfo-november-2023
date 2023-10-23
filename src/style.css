@@ -13,6 +13,20 @@ body, html {
   color: rgb(0, 123, 148);
 }
 
+#form-control{
+  min-width: 160px;
+    height: .75em;
+    margin-top: 0em;
+    min-height: 1em;
+    padding: 1em;
+    margin-bottom: 0em;
+}
+
+#gray{
+  background: #607d8b !important;
+  border:#607d8b !important;
+}
+
 
 :root {
   --red: rgb(172, 0, 0);
@@ -34036,7 +34050,9 @@ h2.accordion-header {
 }
 
 .moveLeft{
-  margin-left: -1em
+  margin-left: -1em;
+  padding-right:0em;
+  padding-bottom:0em;
 }
 
 .accordion-button:not(.collapsed){

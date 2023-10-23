@@ -24,12 +24,14 @@ import {
   SubdirectoryArrowRight,
   SwapVert,
 } from "@mui/icons-material";
+
 import { DialogContentSection } from "./DialogContentSection";
 import produce from "immer";
 import defaultLogo from "../../../assets/BytecodeLogo.png";
 import { defaultLogoHeight } from "../../../utils/constants";
 import Dropzone from "react-dropzone";
 
+import { GCloud } from "../../_lowLevel/GCloud";
 
 const LinkConfigRow = ({
   tabIndex,
@@ -43,7 +45,7 @@ const LinkConfigRow = ({
     <Grid container spacing={2} pl={2} py={2} width="100%" className="d-flex justify-content-start">
 
 
-      <Grid item xs={2}>
+      <Grid item xs={3}>
         <FormControl sx={{ width: "100%" }}>
 
           <TextField
@@ -57,7 +59,7 @@ const LinkConfigRow = ({
         </FormControl>
       </Grid>
 
-      <Grid item xs={2}>
+      <Grid item xs={3}>
         <FormControl sx={{ width: "100%" }}>
 
           <TextField
@@ -594,6 +596,10 @@ export const AppConfig = ({
               Add to Links
             </Button>
           </Stack>
+
+
+
+          <GCloud/>
 
         </DialogContentSection>
 
