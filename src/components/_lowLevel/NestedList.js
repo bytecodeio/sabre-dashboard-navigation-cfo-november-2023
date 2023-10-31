@@ -132,7 +132,7 @@ export const NestedList = ({
                       sx={{ marginLeft: 2 }}
                     >
                       {child.children.map((child, childIndex) => (
-                        <ListItem style={{ pointerEvents: 'none' }} component='a' href={`${baseUrl}/spartan/extension_framework_apps::dashboard_navigation/${child.value}`} disablePadding key={child.value}>
+                        <ListItem style={{ pointerEvents: 'none' }} component='a' href={`${baseUrl}/spartan/extension_framework_apps::dashboard_navigation_test/${child.value}`} disablePadding key={child.value}>
                           <ListItemButton
                             style={{ pointerEvents: 'auto' }}
                             onClick={(e) => {
@@ -150,7 +150,7 @@ export const NestedList = ({
                       ))}
                     </ExpandableListItem>
                   ) : (
-                    <ListItem style={{ pointerEvents: 'none' }} component='a' href={`${baseUrl}/spartan/extension_framework_apps::dashboard_navigation/${child.value}`} disablePadding key={child.value}>
+                    <ListItem style={{ pointerEvents: 'none' }} component='a' href={`${baseUrl}/spartan/extension_framework_apps::dashboard_navigation_test/${child.value}`} disablePadding key={child.value}>
                       <ListItemButton
                         style={{ pointerEvents: 'auto' }}
                         onClick={(e) => {

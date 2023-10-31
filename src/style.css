@@ -13,6 +13,29 @@ body, html {
   color: rgb(0, 123, 148);
 }
 
+.sameFont{
+  margin: 0;
+font-family: "Roboto","Helvetica","Arial",sans-serif;
+font-weight: 500;
+font-size: 1.25rem;
+line-height: 1.6;
+letter-spacing: 0.0075em;
+margin-bottom: 8px;
+margin-bottom: 1em !important;
+    margin-left: -1em;
+
+
+}
+
+
+.files label{
+  font-size: 12px;
+    position: absolute;
+    top: -2em;
+    left: 1.5em;
+
+}
+
 #form-control{
   min-width: 160px;
     height: .75em;
@@ -25,7 +48,100 @@ body, html {
 #gray{
   background: #607d8b !important;
   border:#607d8b !important;
+  padding: 0.4em 2em;
+border-radius: 5px;
+margin-left: -1em;
+
 }
+
+#gray:hover{
+  background: #34515e !important;
+}
+
+
+
+.custom{
+  margin-top:3em;
+  margin-left:1em
+}
+
+
+.custom .form-switch {
+    padding-left: 2.5em;
+    border-bottom: 1px solid #efefef;
+    margin-bottom: 0.5em;
+    padding-bottom: 2em;
+}
+
+.custom .whiteBox {
+display: flex;
+flex-direction: column;
+/* align-items: center; */
+justify-items: flex-start;
+
+max-height: 19em;
+overflow: hidden;
+overflow-y: scroll;
+border: 1px solid #efefef;
+box-shadow: 0px 0px 19px -1px rgba(175,175,175,0.67);
+max-width: 160px;
+}
+
+#gray2{
+  background: white !important;
+  border:white !important;
+  padding: 0.6em 1em;
+border-radius: 5px;
+    color: rgb(101, 107, 109);
+margin-right: 2em;
+box-shadow: 0px 0px 19px -1px rgba(175,175,175,0.67);
+}
+
+.custom .accordion {
+  width: auto;
+
+    max-width: 180px;
+    margin-right: 2em;
+}
+
+.custom .accordion-button:focus{
+  width: auto;
+
+    max-width: 180px;
+    margin-right: 2em;
+}
+
+.custom .accordion-button.collapsed {
+  min-width: 8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem;
+}
+
+.custom .accordion-button::after{
+  display: none
+}
+
+.custom .whiteBox{
+position: absolute;
+    background: white;
+    top: 2.3em;
+    padding: 0.4em;
+}
+
+
+.custom  .collapse:not(.show) {
+    display: none;
+    position: absolute;
+    background: white;
+    top: 2.3em;
+}
+
+.custom .form-check label{
+  font-size: 13px
+}
+
 
 
 :root {
@@ -100,7 +216,17 @@ body, html {
 }
 
 .hidden{
-  display: none
+  display: none !important
+}
+
+.custom .accordion-body{
+position: absolute;
+background: white;
+}
+
+
+.custom .accordion-item{
+  background: white
 }
 
 /* @sabre/spark - v3.9.3 - 2022-12-7 DO NOT MODIFY THIS FILE DIRECTLY OR YOU WILL NOT BE ABLE TO UPDATE YOUR VERSION OF SPARK. */

@@ -2,10 +2,15 @@ import React, {Fragment, useContext, useEffect, useState } from "react";
 
 import { ExtensionContext } from "@looker/extension-sdk-react";
 import { indexOf } from "lodash";
-import { Container, Tab, Tabs, Nav, NavItem, Dropdown, Button, Input, Form } from "react-bootstrap";
+import { Container, Tab, Tabs, Nav, NavItem, Dropdown, Button, Input, Form, Row, Col } from "react-bootstrap";
 import {  Select, MenuItem } from "@mui/material";
+import { AppAlertContext } from "../Home";
+
+
+
 export const GCloud = () => {
    const extensionContext = useContext(ExtensionContext)
+  const setAppAlert = useContext(AppAlertContext);
 
    const [folders, setFolders] = useState([])
    const [selectedFolder, setSelectedFolder] = useState("")
@@ -33,7 +38,7 @@ export const GCloud = () => {
    const submitFile = async () => {
      let _base64 = await getBase64(file)
      console.log(_base64)
-     let payload = `file=${_base64}&name=${file.name}&folder=${selectedFolder}`
+     let payload = `file=${_base64}&name=${file.name}&folder="/"`
      console.log('payload', payload)
      let res = await extensionContext.extensionSDK.serverProxy('https://us-central1-acoustic-atom-309118.cloudfunctions.net/cloud-storage-func/uploadfile',{
        headers:{
@@ -43,7 +48,12 @@ export const GCloud = () => {
        body:payload
      })
      console.log("res", res)
-     alert("Your file was uploaded and saved!")
+
+     setAppAlert({
+       message:
+         "Successfully uploaded your CSV file!",
+       type: "success",
+     });
    }
 
    const getBase64 = _file => new Promise((resolve,reject) => {
@@ -62,9 +72,9 @@ export const GCloud = () => {
 
     <Fragment>
 
-              <p className="mt-4 mb-0">Cloud Storage Folders</p>
+  <p className="mt-5 sameFont">Cloud Storage CSV Upload</p>
 
-    <div className="row d-flex align-items-center">
+    <div className="d-flex flex-column files">
 
         {/*<Dropdown className="mt-4 mb-5">
             <Dropdown.Toggle   variant="secondary" id="dropdown-basic" onChange={handleFolderChange}>
@@ -82,10 +92,10 @@ export const GCloud = () => {
 
           </Dropdown>*/}
 
-          <div className="col-md-3">
+            {/*<div className="col-md-2">
 
 
-          <Select value={selectedFolder} onChange={handleFolderChange} id="form-control">
+          <Select label={`Cloud Storage Folders`} value={selectedFolder} onChange={handleFolderChange} id="form-control">
                 {folders?.map(f => {
                   return (
                     <MenuItem value={f} id="form-control2">{f}</MenuItem>
@@ -93,21 +103,106 @@ export const GCloud = () => {
                 })}
               </Select>
 
-              </div>
+              </div>*/}
 
-       {selectedFolder != ""?
-       <>
-    <div className="col-md-4">
-          <Form.Control
-          type="file"
-          onChange={handleFileChange}
+
+          <Row>
+            <div className="col-md-6">
+
+          <Row className="mb-4 mt-3">
+              <div className="col-md-8">
+                  <Form.Label>Upload Mapping</Form.Label>
+                  <Form.Control
+                  type="file"
+
+                  onChange={handleFileChange}
+                />
+                </div>
+            <div className="col-md-4">
+                 <Button id="gray" onClick={submitFile}><i class="fas fa-upload"></i> Upload</Button>
+            </div>
+          </Row>
+
+          <Row className="mb-4 mt-3">
+              <div className="col-md-8">
+              <Form.Label>Upload Budget</Form.Label>
+                  <Form.Control
+                  type="file"
+
+                  onChange={handleFileChange}
+                />
+                </div>
+            <div className="col-md-4">
+                 <Button id="gray" onClick={submitFile}><i class="fas fa-upload"></i> Upload</Button>
+            </div>
+          </Row>
+
+
+        <Row className="mb-4 mt-3">
+              <div className="col-md-8">
+                <Form.Label>Upload Actual</Form.Label>
+                  <Form.Control
+                  type="file"
+
+                  onChange={handleFileChange}
+                />
+                </div>
+            <div className="col-md-4">
+                 <Button id="gray" onClick={submitFile}><i class="fas fa-upload"></i> Upload</Button>
+            </div>
+          </Row>
+
+          </div>
+  <div className="col-md-6">
+
+  <Row className="mb-4 mt-3">
+        <div className="col-md-8">
+          <Form.Label>Upload Forecast</Form.Label>
+            <Form.Control
+            type="file"
+
+            onChange={handleFileChange}
           />
           </div>
-    <div className="col-md-4">
-         <Button id="gray" onClick={submitFile}>Upload</Button>
+      <div className="col-md-4">
+           <Button id="gray" onClick={submitFile}><i class="fas fa-upload"></i> Upload</Button>
+      </div>
+    </Row>
+
+    <Row className="mb-4 mt-3">
+          <div className="col-md-8">
+            <Form.Label>Upload Cost Optimization</Form.Label>
+              <Form.Control
+              type="file"
+
+              onChange={handleFileChange}
+            />
             </div>
-       </>
-       :''}
+        <div className="col-md-4">
+             <Button id="gray" onClick={submitFile}><i class="fas fa-upload"></i> Upload</Button>
+        </div>
+      </Row>
+
+      <Row className="mb-4 mt-3">
+            <div className="col-md-8">
+              <Form.Label>Upload Mapping Other Services</Form.Label>
+                <Form.Control
+                type="file"
+
+                onChange={handleFileChange}
+              />
+              </div>
+          <div className="col-md-4">
+               <Button id="gray" onClick={submitFile}><i class="fas fa-upload"></i> Upload</Button>
+          </div>
+        </Row>
+
+
+  </div>
+
+        </Row>
+
+
 
     </div>
 

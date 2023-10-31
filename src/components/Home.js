@@ -14,8 +14,6 @@ import { sortDashboards } from "../utils/utils";
 import { useHistory } from "react-router-dom";
 import { useExtensionContext } from "../hooks/useExtensionContext";
 
-
-
 import {
   LOOKER_MODEL,
   LOOKER_EXPLORE,
@@ -32,43 +30,82 @@ export const Home = () => {
   const [isLeftDrawerOpen, setIsLeftDrawerOpen] = useState(true);
   const [selectedDashboardId, setSelectedDashboardId] = useState();
   const [selectedDashboardFilters, setSelectedDashboardFilters] = useState();
-  const [fieldNameSuggestions, setFieldNameSuggestions] = useState([])
 
+  const [fieldNameSuggestions, setFieldNameSuggestions] = useState([]);
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
- const { isLoadingContextData, appConfig } = useExtensionContext();
+  const [fieldOptions, setFieldOptions] = useState([]);
+  const [selectedFields, setSelectedFields] = useState([]);
+
+  const { isLoadingContextData, appConfig } = useExtensionContext();
 
   // get application context data on load
   const [reload, setReload] = useState({});
 
   useEffect(() => {
     const getSuggestions = (filter) => {
-      // console.log(":::FILTER", filter)
-      return sdk.ok(sdk.model_fieldname_suggestions({
-        model_name: filter.model,
-        view_name: filter.explore,
-        field_name: filter.dimension
-      }))
-        .then((res) => res)
+      return sdk
+        .ok(
+          sdk.model_fieldname_suggestions({
+            model_name: filter.model,
+            view_name: filter.explore,
+            field_name: filter.dimension,
+          })
+        )
+        .then((res) => {
+          return {
+            ...filter,
+            ...res,
+          };
+        })
         .catch(() => ({}));
-    }
+    };
 
     const getDashboardFilter = async () => {
       try {
-        const response = await sdk.ok(sdk.dashboard(selectedDashboardId, 'dashboard_filters'));
-        const filters = response?.dashboard_filters || [];
+        const filterGroups = ["button_group", "tag_list", "checkboxes"];
 
-        const suggestionsPromises = filters.map((filter) => getSuggestions(filter));
+        const response = await sdk.ok(
+          sdk.dashboard(selectedDashboardId, "dashboard_filters")
+        );
+
+        const checkboxFilter = (filter) =>
+          filterGroups.includes(filter.ui_config.type);
+
+        const filteredFilters =
+          response.dashboard_filters.filter(checkboxFilter);
+
+        // console.log(filters, "filters");
+        // console.log(filteredFilters, "filteredFilters");
+
+        // const filters = response?.dashboard_filters || [];
+
+        // console.log(response?.dashboard_filters, "here");
+
+        // if (response?.dashboard_filters[0].ui_config.type == "checkboxes") {
+        //   console.log("it is");
+
+        //   console.log(filters);
+        // }
+
+        const suggestionsPromises = filteredFilters.map((filter) =>
+          getSuggestions(filter)
+        );
 
         const suggestionsResults = await Promise.all(suggestionsPromises);
+
         setFieldNameSuggestions(suggestionsResults);
       } catch (error) {
         console.log("Error getting FILTERS:", error);
       }
-    }
+    };
 
     getDashboardFilter();
   }, [selectedDashboardId]);
 
+  useEffect(() => {
+    console.log("field Name Suggession", fieldNameSuggestions);
+  }, [fieldNameSuggestions]);
 
   const [setIsLoadingContextData] = useState(true);
   const fallbackAppConfig = {
@@ -89,8 +126,7 @@ export const Home = () => {
     });
   };
   const getContextData = async () => {
-
-    console.log('refreshing it after ')
+    console.log("refreshing it after ");
     setIsLoadingContextData(true);
     try {
       const contextData = await extensionSDK.getContextData();
@@ -107,8 +143,6 @@ export const Home = () => {
   useEffect(() => {
     getContextData();
   }, [reload]);
-
-
 
   // check whether user is an admin user on load
   const [isCheckingAdminUser, setIsCheckingAdminUser] = useState(true);
@@ -136,7 +170,6 @@ export const Home = () => {
     checkAdminUser();
   }, []);
 
-
   // snackbar alert
   const defaultAppAlert = {
     message: "",
@@ -147,9 +180,6 @@ export const Home = () => {
     setAppAlert(defaultAppAlert);
   };
   const setAppError = (message) => setAppAlert({ message, type: "error" });
-
-
-
 
   // // fetch folder dashboards on load, after checking admin user status
   const { isInitializingTabs, tabData } = useInitTabs({
@@ -216,28 +246,13 @@ export const Home = () => {
     history.push(`/${newDashboardId}`);
   };
 
-
-
-
-
-  useEffect( () => {
-
-   sdk.ok(sdk.dashboard(selectedDashboardId, 'dashboard_filters')).then((res) => {
-
-   console.log(res, selectedDashboardId, "DASHBOARD FILTERS");
-
-
-    })
-
-  }, [selectedDashboardId]);
-
-
   useEffect(() => {
-     console.log('field Name Suggession', fieldNameSuggestions)
-   }, [fieldNameSuggestions]
-   )
-
-
+    sdk
+      .ok(sdk.dashboard(selectedDashboardId, "dashboard_filters"))
+      .then((res) => {
+        console.log(res, selectedDashboardId, "DASHBOARD FILTERS");
+      });
+  }, [selectedDashboardId]);
 
   return (
     <AppAlertContext.Provider value={setAppAlert}>
@@ -286,6 +301,9 @@ export const Home = () => {
                     <EmbedDashboard
                       dashboardId={selectedDashboardId}
                       showDashboardFilters={appConfig?.showDashboardFilters}
+                      fieldNameSuggestions={fieldNameSuggestions}
+                      setSelectedCheckboxes={setSelectedCheckboxes}
+                      selectedCheckboxes={selectedCheckboxes}
                     />
                   ) : (
                     <Alert severity="warning">
