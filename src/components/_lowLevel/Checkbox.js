@@ -12,9 +12,11 @@ const Checkbox = ({
   setFieldNameSuggestions,
   selectedCheckboxes,
   setSelectedCheckboxes,
-
   boardTitle,
-  setBoardTitle
+  setBoardTitle,
+  filter,
+  expression,
+  onChange
 }) => {
   const { core40SDK: sdk, extensionSDK } = useContext(ExtensionContext);
   const handleFieldSelection = (value) => {

@@ -36,6 +36,7 @@ export const EmbedDashboard = ({
         const filters = await sdk.ok(
           sdk.dashboard(selectedDashboardId, "dashboard_filters")
         );
+
         setDashboardFilters(filters["dashboard_filters"]);
       };
       initialize();
@@ -45,6 +46,7 @@ export const EmbedDashboard = ({
 
 
   const handleFilterChange = (newFilterValue, filterName) => {
+
     // Using the dashboard state, we are sending a message to the iframe to update the filters with the new values
     dashboard.send("dashboard:filters:update", {
       filters: {
@@ -58,7 +60,6 @@ export const EmbedDashboard = ({
   // Set the state of the dashboard so we can update filters and run
   const handleDashboardLoaded = (dashboard) => {
     setDashboard(dashboard);
-
   };
 
 
@@ -130,15 +131,36 @@ export const EmbedDashboard = ({
     [dashboardId, showDashboardFilters]
   );
 
+
   return (
+    <Fragment>
+    {/*<Fragment>
+    {dashboardFilters?.map((filter) => {
+
 
     <EmbedContainer
     ref={embedDashboard}
     fieldNameSuggestions={fieldNameSuggestions}
     setSelectedCheckboxes={setSelectedCheckboxes}
     selectedCheckboxes={selectedCheckboxes}
+    filter={filter}
+    expression={filterValues[filter.name]}
+    onChange={(event) => handleFilterChange(event, filter.name)}
+    key={filter.id}
     />
+      })}
+  </Fragment>*/}
 
 
-  );
+
+      <EmbedContainer
+      ref={embedDashboard}
+      fieldNameSuggestions={fieldNameSuggestions}
+      setSelectedCheckboxes={setSelectedCheckboxes}
+      selectedCheckboxes={selectedCheckboxes}
+
+      />
+</Fragment>
+
+    )
 };
