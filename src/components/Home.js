@@ -330,6 +330,7 @@ export const Home = () => {
                       setSelectedCheckboxes={setSelectedCheckboxes}
                       selectedCheckboxes={selectedCheckboxes}
                       boardTitle={boardTitle}
+                      selectedDashboardId={selectedDashboardId}
                     />
 
                     </Fragment>

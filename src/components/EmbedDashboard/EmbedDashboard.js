@@ -11,7 +11,8 @@ export const EmbedDashboard = ({
   fieldNameSuggestions,
   setSelectedCheckboxes,
   selectedCheckboxes,
-  selectedDashboardId
+  selectedDashboardId,
+  setSelectedDashboardId
 }) => {
 
   const { core40SDK: sdk, extensionSDK } = useContext(ExtensionContext);
@@ -42,7 +43,7 @@ export const EmbedDashboard = ({
       initialize();
     }, [selectedDashboardId]);
 
-
+    console.log(selectedDashboardId)
 
 
   const handleFilterChange = (newFilterValue, filterName) => {
@@ -92,18 +93,6 @@ export const EmbedDashboard = ({
 //   }
 // }, [selectedCheckboxes]);
 
-
-
-
-//   useEffect(() => {
-//   if (dashboard) {
-//
-//     dashboard.send("dashboard:filters:update", {
-//     ?: setSelectedCheckboxes,
-//     });
-//     dashboard.send("dashboard:run");
-//   }
-// }, [selectedCheckboxes]);
 
 
 
