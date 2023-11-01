@@ -32,7 +32,7 @@ export const Home = () => {
   const [selectedDashboardFilters, setSelectedDashboardFilters] = useState();
 
   const [fieldNameSuggestions, setFieldNameSuggestions] = useState([]);
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState({});
 
   const [fieldOptions, setFieldOptions] = useState([]);
   const [selectedFields, setSelectedFields] = useState([]);

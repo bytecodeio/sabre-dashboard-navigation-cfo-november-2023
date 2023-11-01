@@ -19,15 +19,35 @@ const Checkbox = ({
   onChange
 }) => {
   const { core40SDK: sdk, extensionSDK } = useContext(ExtensionContext);
-  const handleFieldSelection = (value) => {
-    setSelectedCheckboxes((prev) => {
-      if (prev.includes(value)) {
-        return prev.filter((selectedFilter) => selectedFilter !== value);
-      } else {
-        return [...prev, value];
-      }
-    });
+  const handleFieldSelection = (field, value) => {
+    let _selectedCheckboxes = {...selectedCheckboxes};
+    let {title} = field;
+    if (!_selectedCheckboxes.hasOwnProperty(title)) {
+      _selectedCheckboxes[title] = []
+    }
+    if (_selectedCheckboxes[title]?.includes(value)) {
+      let index = _selectedCheckboxes[title].indexOf(value)
+      _selectedCheckboxes[title].splice(index,1)
+      console.log(_selectedCheckboxes)
+    } else {
+      _selectedCheckboxes[title].push(value)
+    }
+    if (_selectedCheckboxes[title].length == 0 ) {
+      delete _selectedCheckboxes[title]
+    }
+    setSelectedCheckboxes(_selectedCheckboxes)
+    // setSelectedCheckboxes((prev) => {
+    //   if (prev.includes(value)) {
+    //     return prev.filter((selectedFilter) => selectedFilter !== value);
+    //   } else {
+    //     return [...prev, value];
+    //   }
+    // });
   };
+
+  useEffect(() => {
+    console.log("fields", fieldNameSuggestions)
+  },[fieldNameSuggestions])
 
 
 
@@ -86,18 +106,18 @@ const Checkbox = ({
                    label="Select All"
                    onClick={() => handleSelectAll(field)}
                    checked={field.suggestions.every((option) =>
-                     selectedCheckboxes?.includes(option)
+                     selectedCheckboxes[field.title]?.includes(option)
                    )}
                  />
                  <div class="scrollInside">
                  {field.suggestions.map((option, optionIndex) => (
                    <Form.Group key={optionIndex}>
                      <Form.Check
-                       onClick={() => handleFieldSelection(option)}
+                       onClick={() => handleFieldSelection(field, option)}
                        type="checkbox"
                        className=""
                        label={option}
-                       checked={selectedCheckboxes?.includes(option)}
+                       checked={selectedCheckboxes[field.title]?.includes(option)}
                        name="accountGroups"
                        id={`id_${index}_${optionIndex}`}
                        value={option}
