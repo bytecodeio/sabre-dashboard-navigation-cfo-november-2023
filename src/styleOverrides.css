@@ -1,0 +1,51 @@
+:root {
+	 --disabled-color: #b6bbc2;
+}
+ .disabled-menu-item:hover {
+	 cursor: default;
+	 color: var(--disabled-color);
+}
+ .disabled-menu-item {
+	 color: var(--disabled-color) !important;
+	 pointer-events: none;
+	 cursor: default;
+}
+ .disabled-icon-tooltip {
+	 margin-left: 5px;
+	 pointer-events: auto;
+}
+ .disabled-icon-tooltip:active {
+	 pointer-events: none;
+}
+ .admin-button-gear-icon {
+	 margin-right: 8px;
+}
+ .admin-modal .add-tab-button {
+	 margin: 10px 16px;
+}
+ .admin-modal .config-row-button {
+	 position: relative;
+	 bottom: 8px;
+}
+ .admin-modal .spark-modal__body {
+	 height: 90vh;
+	 display: flex;
+	 flex-direction: column;
+}
+ .admin-modal .spark-modal__scroll {
+	 overflow: visible;
+}
+ .admin-modal .spark-panel {
+	 box-shadow: 0 1px 12px 0 rgba(18, 19, 21, 0.08);
+	 border-radius: 1rem;
+	 width: 100%;
+	 padding: 2rem !important;
+}
+ html {
+	 height: 100%;
+	 overflow: hidden;
+}
+ .spark-modal__content {
+	 min-width: 70%;
+}
+ 

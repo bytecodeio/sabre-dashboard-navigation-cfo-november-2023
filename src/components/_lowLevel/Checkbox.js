@@ -1,6 +1,7 @@
 
-import React, { Fragment, useState } from "react";
+import React, { Fragment, createContext, useEffect, useState, useContext } from "react";
 import { Accordion, Col, Form, Row, Button, Nav } from "react-bootstrap";
+import { ExtensionContext } from "@looker/extension-sdk-react";
 
 const Checkbox = ({
   fieldOptions,
@@ -11,7 +12,11 @@ const Checkbox = ({
   setFieldNameSuggestions,
   selectedCheckboxes,
   setSelectedCheckboxes,
+
+  boardTitle,
+  setBoardTitle
 }) => {
+  const { core40SDK: sdk, extensionSDK } = useContext(ExtensionContext);
   const handleFieldSelection = (value) => {
     setSelectedCheckboxes((prev) => {
       if (prev.includes(value)) {
@@ -21,6 +26,8 @@ const Checkbox = ({
       }
     });
   };
+
+
 
   const handleSelectAll = (field) => {
     const allOptions = field.suggestions;
@@ -37,20 +44,40 @@ const Checkbox = ({
     }
   };
 
+  const [show5, setShow5] = React.useState();
+
+   const wrapperRef = React.useRef(null);
+
+   React.useEffect(() => {
+     document.addEventListener("click", handleClickOutside, false);
+     return () => {
+       document.removeEventListener("click", handleClickOutside, false);
+     };
+   }, []);
+
+   const handleClickOutside = (event) => {
+     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+       setShow5(true);
+
+     }
+   };
+
 
     const [open, setOpen] = React.useState(false);
+
+    console.log(boardTitle)
 
   return (
 
     <Fragment>
-    <div className="d-flex justify-content-start align-items-center custom">
+    <div className="d-flex justify-content-start align-items-center flex-wrap custom" ref={wrapperRef}>
      {fieldNameSuggestions.map((field, index) => (
        <Row key={index}>
-         <Col sm={3}>
+
            <Accordion defaultActiveKey="0">
              <Accordion.Item eventKey="1">
                <Accordion.Header>{field.name}</Accordion.Header>
-               <Accordion.Body>
+               <Accordion.Body className={show5 ? "pink" : "blue"}>
                  <Form.Check
                    className="allOptions clear first"
                    type="switch"
@@ -60,6 +87,7 @@ const Checkbox = ({
                      selectedCheckboxes?.includes(option)
                    )}
                  />
+                 <div class="scrollInside">
                  {field.suggestions.map((option, optionIndex) => (
                    <Form.Group key={optionIndex}>
                      <Form.Check
@@ -74,10 +102,11 @@ const Checkbox = ({
                      />
                    </Form.Group>
                  ))}
+                 </div>
                </Accordion.Body>
              </Accordion.Item>
            </Accordion>
-         </Col>
+
        </Row>
      ))}
 </div>

@@ -27,6 +27,8 @@
     "@mui/icons-material": "^5.8.2",
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.8.2",
+    "@sabre/spark": "^3.8.2",
+    "@sabre/spark-react-core": "^1.4.0",
     "@styled-icons/material": "10.34.0",
     "@styled-icons/material-outlined": "10.34.0",
     "@styled-icons/material-rounded": "10.34.0",

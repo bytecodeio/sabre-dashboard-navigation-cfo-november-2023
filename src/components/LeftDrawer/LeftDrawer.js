@@ -67,7 +67,7 @@ export const LeftDrawer = ({
             <Button
               id="spark"
               className="spark-btn spark-btn--sm spark-btn--secondary"
-              startIcon={<i class="far fa-cog"></i>}
+            
               onClick={() => setIsAdminModalOpen(true)}
             >
               Admin

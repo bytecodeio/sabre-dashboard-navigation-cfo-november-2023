@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState, useContext } from "react";
+import React, { Fragment, createContext, useEffect, useState, useContext } from "react";
 import "normalize.css";
 import { ExtensionContext } from "@looker/extension-sdk-react";
 import { TopAppBar } from "./TopAppBar/TopAppBar";
@@ -42,6 +42,8 @@ export const Home = () => {
   // get application context data on load
   const [reload, setReload] = useState({});
 
+  const [boardTitle, setBoardTitle] = useState([]);
+
   useEffect(() => {
     const getSuggestions = (filter) => {
       return sdk
@@ -64,6 +66,15 @@ export const Home = () => {
     const getDashboardFilter = async () => {
       try {
         const filterGroups = ["button_group", "tag_list", "checkboxes"];
+
+
+        const response1 = await sdk.ok(
+          sdk.dashboard(selectedDashboardId)
+
+        );
+
+
+          setBoardTitle(response1.title)
 
         const response = await sdk.ok(
           sdk.dashboard(selectedDashboardId, "dashboard_filters")
@@ -101,10 +112,15 @@ export const Home = () => {
     };
 
     getDashboardFilter();
-  }, [selectedDashboardId]);
+  }, [selectedDashboardId, boardTitle]);
+
+
 
   useEffect(() => {
-    console.log("field Name Suggession", fieldNameSuggestions);
+//     console.log("field Name Suggession", fieldNameSuggestions);
+//
+// console.log(boardTitle, "responseElizabeth")
+
   }, [fieldNameSuggestions]);
 
   const [setIsLoadingContextData] = useState(true);
@@ -175,6 +191,8 @@ export const Home = () => {
     message: "",
     type: "success",
   };
+
+
   const [appAlert, setAppAlert] = useState(defaultAppAlert);
   const handleSnackbarClose = () => {
     setAppAlert(defaultAppAlert);
@@ -256,7 +274,9 @@ export const Home = () => {
 
   return (
     <AppAlertContext.Provider value={setAppAlert}>
-      <Box height="100%" display="flex" flexDirection="column">
+      <Box height="150%" display="flex" flexDirection="column">
+
+
         <ErrorBoundary>
           {isInitializingTabs || isCheckingAdminUser ? (
             <AppLoadingSpinner message="Loading Folders" />
@@ -297,19 +317,30 @@ export const Home = () => {
                       }),
                   }}
                 >
+
                   {appConfig?.tabs?.length > 0 ? (
+
+                    <Fragment>
+
+                    <p className="mb-0 left5">{boardTitle}</p>
                     <EmbedDashboard
                       dashboardId={selectedDashboardId}
                       showDashboardFilters={appConfig?.showDashboardFilters}
                       fieldNameSuggestions={fieldNameSuggestions}
                       setSelectedCheckboxes={setSelectedCheckboxes}
                       selectedCheckboxes={selectedCheckboxes}
+                      boardTitle={boardTitle}
                     />
+
+                    </Fragment>
+
+
                   ) : (
                     <Alert severity="warning">
                       Please define folders in the admin config pane.
                     </Alert>
                   )}
+
                 </Box>
               </Box>
             </>

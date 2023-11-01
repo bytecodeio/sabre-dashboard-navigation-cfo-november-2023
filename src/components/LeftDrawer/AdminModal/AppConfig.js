@@ -9,6 +9,8 @@ import {
   Grid,
   InputLabel,
   IconButton,
+  List,
+  ListItem,
   Select,
   Stack,
   Switch,
@@ -177,9 +179,9 @@ const TabConfigRow = ({
             value={tab.groupsVisibleTo ?? []}
           >
             {allGroups.map((group) => (
-              <MenuItem key={group.id} value={group.id}>
+              <ListItem key={group.id} value={group.id}>
                 {group.name}
-              </MenuItem>
+              </ListItem>
             ))}
           </Select>
         </FormControl>
@@ -290,6 +292,34 @@ const TabConfigRow = ({
             />
           </Box>
         </Grid>
+
+        <Grid item xs={3}>
+    <FormControl sx={{ width: "100%" }}>
+      <InputLabel id="groups-visible-to-label">Groups Visible To</InputLabel>
+      <Select
+        labelId="groups-visible-to-label"
+        multiple
+        onChange={(e) => {
+          const newValue =
+            typeof e.target.value === "string"
+              ? e.target.value.split(",")
+              : e.target.value;
+          updateNestedTab("groupsVisibleTo", newValue, tabIndex, nestedTabIndex);
+        }}
+        size="small"
+        value={nestedTab.groupsVisibleTo ?? []}
+      >
+    
+        {allGroups.map((group) => (
+          <ListItem key={group.id} value={group.id}>
+            {group.name}
+          </ListItem>
+
+        ))}
+
+      </Select>
+    </FormControl>
+  </Grid>
         <Grid item xs="auto">
           <Tooltip
             title="Add Nested Tab"
@@ -338,6 +368,8 @@ export const AppConfig = ({
   isSavingConfig,
   closeModal,
   setSelectedTab,
+  appAlert,
+  setAppAlert
 }) => {
 
   const { core40SDK: sdk } = useContext(ExtensionContext);
@@ -353,6 +385,8 @@ export const AppConfig = ({
         })
       );
       setAllGroups(groups);
+
+      console.log(groups,  "what are the groups")
       setIsLoadingGroups(false);
     } catch (e) {
       setAppAlert({

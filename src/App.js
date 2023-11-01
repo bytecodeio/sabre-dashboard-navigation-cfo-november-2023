@@ -14,16 +14,20 @@ import "./style.css";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#607d8b",
+      main: "#007B94",
+      contrastText: "#ffffff",
       light: "#8eacbb",
       dark: "#34515e",
-      contrastText: "#ffffff",
+
     },
     secondary: {
-      main: "#fafafa",
+      main: "#121315",
       light: "#ffffff",
       dark: "#c7c7c7",
       contrastText: "#37474f",
+    },
+    error: {
+      main: "#D13630",
     },
   },
 });

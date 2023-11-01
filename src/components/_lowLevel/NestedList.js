@@ -8,6 +8,8 @@ import {
   Collapse,
   Box,
 } from "@mui/material";
+
+// import { Icon, MenuItem, PanelMenu, Tooltip } from "@sabre/spark-react-core";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
 import {
   Accordion,
@@ -132,7 +134,7 @@ export const NestedList = ({
                       sx={{ marginLeft: 2 }}
                     >
                       {child.children.map((child, childIndex) => (
-                        <ListItem style={{ pointerEvents: 'none' }} component='a' href={`${baseUrl}/spartan/extension_framework_apps::dashboard_navigation_test/${child.value}`} disablePadding key={child.value}>
+                        <ListItem style={{ pointerEvents: 'none' }} component='a' href={`${baseUrl}/spartan/gcp_billing::dashboard_navigation_test/${child.value}`} disablePadding key={child.value}>
                           <ListItemButton
                             style={{ pointerEvents: 'auto' }}
                             onClick={(e) => {
@@ -150,7 +152,7 @@ export const NestedList = ({
                       ))}
                     </ExpandableListItem>
                   ) : (
-                    <ListItem style={{ pointerEvents: 'none' }} component='a' href={`${baseUrl}/spartan/extension_framework_apps::dashboard_navigation_test/${child.value}`} disablePadding key={child.value}>
+                    <ListItem style={{ pointerEvents: 'none' }} component='a' href={`${baseUrl}/spartan/gcp_billing::dashboard_navigation_test/${child.value}`} disablePadding key={child.value}>
                       <ListItemButton
                         style={{ pointerEvents: 'auto' }}
                         onClick={(e) => {
