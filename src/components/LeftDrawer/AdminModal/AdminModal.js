@@ -60,12 +60,15 @@ export const AdminModal = ({ isOpen, setIsOpen, appConfig, refreshPayload }) => 
     <Dialog open={isOpen} fullWidth maxWidth="none">
       <DialogTitle>
         <Stack
+          id="center"
           direction="row"
           alignItems="center"
           justifyContent="space-between"
         >
           <Typography variant="h5 text-center">App Configuration</Typography>
-          <IconButton onClick={() => setIsOpen(false)}>
+          <IconButton
+          id="closeIt"
+          onClick={() => setIsOpen(false)}>
             <Close />
           </IconButton>
         </Stack>

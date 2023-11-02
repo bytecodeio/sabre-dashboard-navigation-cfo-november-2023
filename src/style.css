@@ -67,12 +67,12 @@ body, html {
 }
 
 .css-1kwhuc9-MuiButtonBase-root-MuiListItemButton-root.Mui-selected{
-  background: linear-gradient(45deg,#007b94,#006074);
+  /* background: linear-gradient(45deg,#007b94,#006074); */
 
 }
 
 .css-1kwhuc9-MuiButtonBase-root-MuiListItemButton-root.Mui-selected p{
-  color:white
+  /* color:white */
 }
 
 .css-1g6nlcb-MuiSvgIcon-root {
@@ -192,6 +192,13 @@ body, html {
   box-shadow: 0px 0px 19px -1px rgba(175,175,175,0.67);
 }
 
+
+.allOptions{
+margin-left: -10px;
+
+}
+
+
 .custom .accordion {
   width: auto;
 
@@ -262,6 +269,32 @@ body, html {
 .custom .form-check label{
   font-size: 13px
 }
+.text-center {
+    text-align: center!important;
+    font-weight: 700;
+    font-size: 21px;
+}
+
+#closeIt{
+  position: absolute;
+    right: 12px;
+    color: black;
+    border: 3px solid #007B94;
+}
+
+.css-14y9ogl-MuiTypography-root {
+    margin: 0;
+
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    letter-spacing: 0.0075em;
+    margin-bottom: 0px;
+}
+
+input, #smallFont{
+  font-size: 13px !important
+}
 
 .custom .accordion-body{
   position: absolute;
@@ -277,8 +310,17 @@ body, html {
   max-height: 500px;
   overflow: hidden;
   overflow-y: scroll;
+
+}
+.divider{
+  border-top: 1px solid #efefef;
+  margin-top: 0.5em;
+  padding-top: 1em;
 }
 
+.larger svg{
+      font-size: 35px;
+}
 
 :root {
   --red: rgb(172, 0, 0);
@@ -457,4 +499,16 @@ li{
 
 .MuiCollapse-root.MuiCollapse-vertical.MuiCollapse-hidden.css-bz4dnt-MuiCollapse-root{
 
+}
+
+.circle {
+  padding:9px 9px !important
+}
+
+.trash {
+  padding:9px 11px !important
+}
+
+.arrows {
+  padding:9px 17px !important
 }

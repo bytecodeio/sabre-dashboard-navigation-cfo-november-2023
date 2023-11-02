@@ -28,7 +28,7 @@ const Accordions = () => {
   return (
   <Container fluid>
 
-    {/*<Card>
+  <Card>
       <Card.Header
       onClick={() => {setIsExpanded(!isExpanded);handleClick();}}>
       Parent <i className={faClass ? 'fal fa-chevron-circle-down' : 'fal fa-chevron-circle-up'}></i></Card.Header>
@@ -50,24 +50,24 @@ const Accordions = () => {
             </Card>
         </Card.Body>
       </Collapse>
-    </Card>*/}
+    </Card>
 
-
-    <Accordion defaultActiveKey="0">
-
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>External Links</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
+    //
+    // <Accordion defaultActiveKey="0">
+    //
+    //   <Accordion.Item eventKey="1">
+    //     <Accordion.Header>External Links</Accordion.Header>
+    //     <Accordion.Body>
+    //       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+    //       eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+    //       minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+    //       aliquip ex ea commodo consequat. Duis aute irure dolor in
+    //       reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+    //       pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+    //       culpa qui officia deserunt mollit anim id est laborum.
+    //     </Accordion.Body>
+    //   </Accordion.Item>
+    // </Accordion>
 
 
 </Container>

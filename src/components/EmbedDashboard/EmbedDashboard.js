@@ -45,18 +45,35 @@ export const EmbedDashboard = ({
 
     console.log(selectedDashboardId)
 
+    useEffect(() => {
+      if (dashboard) {
+        let _formatFilters = {}
+        Object.entries(selectedCheckboxes).map(([key,value]) => {
+          _formatFilters[key] = value.toString()
+        })
+        console.log(_formatFilters)
+        // Using the dashboard state, we are sending a message to the iframe to update the filters with the new values
+        dashboard.send("dashboard:filters:update", {
+          filters: _formatFilters,
+        });
+        // The "dashboard:run" message has to be sent for the filter change to take effect
+        dashboard.send("dashboard:run");
+      }
 
-  const handleFilterChange = (newFilterValue, filterName) => {
+    },[selectedCheckboxes])
 
-    // Using the dashboard state, we are sending a message to the iframe to update the filters with the new values
-    dashboard.send("dashboard:filters:update", {
-      filters: {
-        [filterName]: newFilterValue,
-      },
-    });
-    // The "dashboard:run" message has to be sent for the filter change to take effect
-    dashboard.send("dashboard:run");
-  };
+
+  // const handleFilterChange = (newFilterValue, filterName) => {
+
+  //   // Using the dashboard state, we are sending a message to the iframe to update the filters with the new values
+  //   dashboard.send("dashboard:filters:update", {
+  //     filters: {
+  //       [filterName]: newFilterValue,
+  //     },
+  //   });
+  //   // The "dashboard:run" message has to be sent for the filter change to take effect
+  //   dashboard.send("dashboard:run");
+  // };
 
   // Set the state of the dashboard so we can update filters and run
   const handleDashboardLoaded = (dashboard) => {
@@ -109,7 +126,7 @@ export const EmbedDashboard = ({
         LookerEmbedSDK.init(hostUrl);
         LookerEmbedSDK.createDashboardWithUrl(embedUrl)
           .appendTo(embedContainer)
-          .on('dashboard:filters:changed', handleDashboardLoaded)
+          //.on('dashboard:filters:changed', handleDashboardLoaded)
           .build()
           .connect()
           // .then()

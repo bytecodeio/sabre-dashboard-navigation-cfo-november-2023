@@ -33,7 +33,7 @@ const ExpandableListItem = ({
   return (
     <>
       <ListItemButton onClick={handleSelection} selected={selected}>
-        <ListItemText primary={label} sx={sx} />
+        <ListItemText primary={label} sx={sx}  />
         {isExpanded ? (
           <ExpandLess color="primary" />
         ) : (
@@ -97,7 +97,9 @@ export const NestedList = ({
   return (
     <Fragment>
 
-      <List disablePadding>
+      <List
+
+      disablePadding>
         {listItems.map((listItem, index) => (
           <Box
             key={listItem.label}
@@ -108,6 +110,7 @@ export const NestedList = ({
             }}
           >
             <ExpandableListItem
+
               handleSelection={() => handleDropdownSelection(`${index}`)}
               isExpanded={openItems.includes(`${index}`)}
               label={listItem.label}
@@ -120,6 +123,7 @@ export const NestedList = ({
                 {listItem.children.map((child, childIndex) =>
                   child.children ? (
                     <ExpandableListItem
+
                       handleSelection={() =>
                         handleDropdownSelection(`${index}-${childIndex}`)
                       }
@@ -134,7 +138,9 @@ export const NestedList = ({
                       sx={{ marginLeft: 2 }}
                     >
                       {child.children.map((child, childIndex) => (
-                        <ListItem style={{ pointerEvents: 'none' }} component='a' href={`${baseUrl}/spartan/gcp_billing::dashboard_navigation_test/${child.value}`} disablePadding key={child.value}>
+                        <ListItem
+                        className="spark-menu__list-item"
+                        style={{ pointerEvents: 'none' }} component='a' href={`${baseUrl}/spartan/gcp_billing::dashboard_navigation_test/${child.value}`} disablePadding key={child.value}>
                           <ListItemButton
                             style={{ pointerEvents: 'auto' }}
                             onClick={(e) => {
@@ -152,7 +158,9 @@ export const NestedList = ({
                       ))}
                     </ExpandableListItem>
                   ) : (
-                    <ListItem style={{ pointerEvents: 'none' }} component='a' href={`${baseUrl}/spartan/gcp_billing::dashboard_navigation_test/${child.value}`} disablePadding key={child.value}>
+                    <ListItem
+                    className="spark-menu__list-item"
+                    style={{ pointerEvents: 'none' }} component='a' href={`${baseUrl}/spartan/gcp_billing::dashboard_navigation_test/${child.value}`} disablePadding key={child.value}>
                       <ListItemButton
                         style={{ pointerEvents: 'auto' }}
                         onClick={(e) => {
@@ -205,6 +213,8 @@ export const NestedList = ({
         </Accordion>
 
       </List>
+
+
 
 
 

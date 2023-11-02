@@ -10,7 +10,7 @@ import {
   InputLabel,
   IconButton,
   List,
-  ListItem,
+  MenuItem,
   Select,
   Stack,
   Switch,
@@ -35,21 +35,18 @@ import Dropzone from "react-dropzone";
 
 import { GCloud } from "../../_lowLevel/GCloud";
 
-const LinkConfigRow = ({
-  tabIndex,
-  tab,
-  updateTab,
-  removeLink
-
-}) => (
+const LinkConfigRow = ({ tabIndex, tab, updateTab, removeLink }) => (
   <>
-
-    <Grid container spacing={2} pl={2} py={2} width="100%" className="d-flex justify-content-start">
-
-
+    <Grid
+      container
+      spacing={2}
+      pl={2}
+      py={2}
+      width="100%"
+      className="d-flex justify-content-start"
+    >
       <Grid item xs={3}>
         <FormControl sx={{ width: "100%" }}>
-
           <TextField
             value={tab.linkName}
             onChange={(e) => updateTab("linkName", e.target.value, tabIndex)}
@@ -63,7 +60,6 @@ const LinkConfigRow = ({
 
       <Grid item xs={3}>
         <FormControl sx={{ width: "100%" }}>
-
           <TextField
             value={tab.studioLink}
             onChange={(e) => updateTab("studioLink", e.target.value, tabIndex)}
@@ -77,11 +73,10 @@ const LinkConfigRow = ({
       <Grid item xs="auto">
         <Tooltip title="Remove Tab">
           <IconButton onClick={() => removeLink(tabIndex)}>
-            <Delete color="error" />
+            <i class="fal fa-trash-alt adminMenu"></i>
           </IconButton>
         </Tooltip>
       </Grid>
-
     </Grid>
 
     {/*<Grid item xs>
@@ -114,11 +109,8 @@ const LinkConfigRow = ({
 
 
     </Grid>*/}
-
-
   </>
 );
-
 
 const TabConfigRow = ({
   addNestedTab,
@@ -132,13 +124,18 @@ const TabConfigRow = ({
   allGroups,
   addLink,
   link,
-  updateLink
+  updateLink,
 }) => (
   <>
-
-    <Grid container spacing={2} pl={2} py={2} width="100%" className="d-flex justify-content-start">
+    <Grid
+      container
+      spacing={2}
+      pl={2}
+      py={2}
+      width="100%"
+      className="d-flex justify-content-start"
+    >
       <Grid item xs>
-
         <TextField
           value={tab.name}
           onChange={(e) => updateTab("name", e.target.value, tabIndex)}
@@ -147,10 +144,8 @@ const TabConfigRow = ({
           size="small"
           sx={{ width: "100%" }}
         />
-
       </Grid>
       <Grid item xs>
-
         <TextField
           value={tab.folderId}
           onChange={(e) => updateTab("folderId", e.target.value, tabIndex)}
@@ -159,13 +154,15 @@ const TabConfigRow = ({
           size="small"
           sx={{ width: "100%" }}
         />
-
       </Grid>
 
       <Grid item xs={2}>
         <FormControl sx={{ width: "100%" }}>
-          <InputLabel id="groups-visible-to-label">Groups Visible To</InputLabel>
+          <InputLabel id="groups-visible-to-label">
+            Groups Visible To
+          </InputLabel>
           <Select
+           id="smallFont"
             labelId="groups-visible-to-label"
             multiple
             onChange={(e) => {
@@ -179,10 +176,15 @@ const TabConfigRow = ({
             value={tab.groupsVisibleTo ?? []}
           >
             {allGroups.map((group) => (
-              <ListItem key={group.id} value={group.id}>
+              <MenuItem
+
+              size="small" key={group.id} value={group.id}>
                 {group.name}
-              </ListItem>
+              </MenuItem>
             ))}
+            {allGroups.map((group) => {
+              console.log(group, "group");
+            })}
           </Select>
         </FormControl>
       </Grid>
@@ -215,7 +217,6 @@ const TabConfigRow = ({
         </FormControl>
       </Grid> */}
 
-
       <Grid item xs="auto">
         <Tooltip title="Add Nested Tab">
           <IconButton
@@ -231,25 +232,34 @@ const TabConfigRow = ({
       <Grid item xs="auto">
         <Tooltip title="Sort Tab Dashboards">
           <IconButton
+            className="arrows"
             onClick={() =>
               setSelectedTab({ tabIndex, nestedTabIndex: undefined })
             }
           >
-            <SwapVert />
+            <i class="fal fa-arrows-v adminMenu"></i>
           </IconButton>
         </Tooltip>
       </Grid>
       <Grid item xs="auto">
         <Tooltip title="Remove Tab">
-          <IconButton onClick={() => removeTab(tabIndex)}>
-            <Delete color="error" />
+          <IconButton className="trash" onClick={() => removeTab(tabIndex)}>
+            <i class="fal fa-trash-alt adminMenu"></i>
           </IconButton>
         </Tooltip>
       </Grid>
     </Grid>
     {tab.children?.map((nestedTab, nestedTabIndex) => (
-      <Grid container spacing={2} pl={2} py={2} width="100%" key={nestedTabIndex} className="d-flex justify-content-center">
-        <Grid item xs="auto">
+      <Grid
+        container
+        spacing={2}
+        pl={2}
+        py={2}
+        width="100%"
+        key={nestedTabIndex}
+        className="d-flex justify-content-center"
+      >
+        <Grid item xs="auto" className="larger">
           <SubdirectoryArrowRight
             sx={{ color: "rgba(0, 0, 0, 0.54)", pr: 1 }}
           />
@@ -294,32 +304,39 @@ const TabConfigRow = ({
         </Grid>
 
         <Grid item xs={3}>
-    <FormControl sx={{ width: "100%" }}>
-      <InputLabel id="groups-visible-to-label">Groups Visible To</InputLabel>
-      <Select
-        labelId="groups-visible-to-label"
-        multiple
-        onChange={(e) => {
-          const newValue =
-            typeof e.target.value === "string"
-              ? e.target.value.split(",")
-              : e.target.value;
-          updateNestedTab("groupsVisibleTo", newValue, tabIndex, nestedTabIndex);
-        }}
-        size="small"
-        value={nestedTab.groupsVisibleTo ?? []}
-      >
-    
-        {allGroups.map((group) => (
-          <ListItem key={group.id} value={group.id}>
-            {group.name}
-          </ListItem>
+          <FormControl sx={{ width: "100%" }}>
+            <InputLabel id="groups-visible-to-label">
+              Groups Visible To
+            </InputLabel>
+            <Select
+              id="smallFont"
+              labelId="groups-visible-to-label"
+              multiple
+              onChange={(e) => {
+                const newValue =
+                  typeof e.target.value === "string"
+                    ? e.target.value.split(",")
+                    : e.target.value;
+                updateNestedTab(
+                  "groupsVisibleTo",
+                  newValue,
+                  tabIndex,
+                  nestedTabIndex
+                );
+              }}
+              size="small"
+              value={nestedTab.groupsVisibleTo ?? []}
+            >
+              {allGroups.map((group) => (
+                <MenuItem
 
-        ))}
-
-      </Select>
-    </FormControl>
-  </Grid>
+                 size="small" key={group.id} value={group.id}>
+                  {group.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
         <Grid item xs="auto">
           <Tooltip
             title="Add Nested Tab"
@@ -330,34 +347,36 @@ const TabConfigRow = ({
                   : "hidden",
             }}
           >
-            <IconButton onClick={() => addNestedTab(tabIndex)}>
-              <CreateNewFolder />
+            <IconButton
+              className="circle"
+              onClick={() => addNestedTab(tabIndex)}
+            >
+              <i class="fal fa-plus-circle adminMenu"></i>
             </IconButton>
           </Tooltip>
         </Grid>
         <Grid item xs="auto">
           <Tooltip title="Sort Tab Dashboards">
             <IconButton
+              className="arrows"
               onClick={() => setSelectedTab({ tabIndex, nestedTabIndex })}
             >
-              <SwapVert />
+              <i class="fal fa-arrows-v adminMenu"></i>
             </IconButton>
           </Tooltip>
         </Grid>
         <Grid item xs="auto">
           <Tooltip title="Remove Tab">
             <IconButton
+              className="trash"
               onClick={() => removeNestedTab(tabIndex, nestedTabIndex)}
             >
-              <Delete color="error" />
+              <i class="fal fa-trash-alt adminMenu"></i>
             </IconButton>
           </Tooltip>
         </Grid>
       </Grid>
     ))}
-
-
-
   </>
 );
 
@@ -369,9 +388,8 @@ export const AppConfig = ({
   closeModal,
   setSelectedTab,
   appAlert,
-  setAppAlert
+  setAppAlert,
 }) => {
-
   const { core40SDK: sdk } = useContext(ExtensionContext);
 
   // Get all Looker groups on load
@@ -386,7 +404,7 @@ export const AppConfig = ({
       );
       setAllGroups(groups);
 
-      console.log(groups,  "what are the groups")
+      console.log(groups, "what are the groups");
       setIsLoadingGroups(false);
     } catch (e) {
       setAppAlert({
@@ -400,10 +418,9 @@ export const AppConfig = ({
     fetchLookerGroups();
   }, []);
 
-// console.log(allGroups, "what are the groups")
+  // console.log(allGroups, "what are the groups")
 
-
-  const emptyLink = { studioLink: '', linkName: '' }
+  const emptyLink = { studioLink: "", linkName: "" };
 
   const addLink = () => {
     setTempAppConfig((prev) =>
@@ -433,8 +450,6 @@ export const AppConfig = ({
       };
     });
   };
-
-
 
   const emptyTab = { name: "", folderId: "", dashboardSortOrder: [] };
   // Add/remove tab inputs
@@ -522,9 +537,6 @@ export const AppConfig = ({
     reader.readAsDataURL(file);
   }, []);
 
-
-
-
   return (
     <>
       <DialogContent>
@@ -600,7 +612,7 @@ export const AppConfig = ({
               />
             ))}
             <Button
-              startIcon={<CreateNewFolder />}
+              id="spark"
               variant="contained"
               sx={{ my: 2 }}
               onClick={addTab}
@@ -621,27 +633,18 @@ export const AppConfig = ({
                 removeLink={removeLink}
               />
             ))}
-            <Button
-              startIcon={<CreateNewFolder />}
-              variant="contained"
-              sx={{ my: 2 }}
-              onClick={addLink}
-            >
-              Add to Links
+            <Button id="spark" sx={{ my: 2 }} onClick={addLink}>
+              Add Links
             </Button>
           </Stack>
 
-
-
-          <GCloud/>
-
+          <GCloud />
         </DialogContentSection>
-
-
-
       </DialogContent>
       <DialogActions>
-        <Button onClick={closeModal}>Cancel</Button>
+        <Button id="spark" onClick={closeModal}>
+          Cancel
+        </Button>
         <LoadingButton
           loading={isSavingConfig}
           variant="contained"
