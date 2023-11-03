@@ -24,6 +24,8 @@
     "@looker/icons": "^1.5.9",
     "@looker/sdk": "^21.18.1",
     "@looker/sdk-rtl": "^21.1.1",
+    "@sabre/spark": "^3.8.2",
+    "@sabre/spark-react-core": "^1.4.0",
     "@mui/icons-material": "^5.8.2",
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.8.2",

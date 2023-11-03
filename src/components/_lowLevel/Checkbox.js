@@ -57,6 +57,10 @@ const Checkbox = ({
     console.log("fields", fieldNameSuggestions);
   }, [fieldNameSuggestions]);
 
+
+
+
+
   const handleSelectAll = (field) => {
     const allOptions = field.suggestions;
     const allSelected = allOptions.every((option) =>
@@ -70,31 +74,31 @@ const Checkbox = ({
 
   const [show5, setShow5] = React.useState();
 
-  const wrapperRef = React.useRef(null);
+   const wrapperRef = React.useRef(null);
 
-  React.useEffect(() => {
-    document.addEventListener("click", handleClickOutside, false);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, false);
-    };
-  }, []);
+   React.useEffect(() => {
+     document.addEventListener("click", handleClickOutside, false);
+     return () => {
+       document.removeEventListener("click", handleClickOutside, false);
+     };
+   }, []);
 
-  const handleClickOutside = (event) => {
-    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      setShow5(true);
-    }
-  };
+   const handleClickOutside = (event) => {
+     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+       setShow5(true);
+
+     }
+   };
 
   const [open, setOpen] = React.useState(false);
 
   console.log(boardTitle);
 
+
+
   return (
     <Fragment>
-      <div
-        className="d-flex justify-content-start align-items-center flex-wrap custom"
-        ref={wrapperRef}
-      >
+      <div className="d-flex justify-content-start align-items-center flex-wrap custom">
         {fieldNameSuggestions.map((field, index) => (
           <Row key={index}>
             <Accordion defaultActiveKey="0">

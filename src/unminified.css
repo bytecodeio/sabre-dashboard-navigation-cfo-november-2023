@@ -36194,6 +36194,10 @@ a:active {
 
 }
 
+#spark:hover{
+  background:#e1e2e5;
+}
+
 @media (min-width: 1800px) {
   .spark-btn {
     font-size: 1.8333333333rem;

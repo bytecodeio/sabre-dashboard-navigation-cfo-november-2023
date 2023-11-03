@@ -49,7 +49,7 @@ export const GCloud = () => {
 
       if (!fileName.includes(keyword.toLowerCase())) {
         setAppAlert({
-          message: `Error: File should contain this format and containing ${keyword}: Filename-${keyword}.csv`,
+          message: `Error: File should contain this format: Filename-${keyword}.csv`,
           type: "error",
         });
       }
@@ -121,7 +121,7 @@ export const GCloud = () => {
 
   return (
     <Fragment>
-      <p className="mt-5 sameFont">Cloud Storage CSV Upload</p>
+      <p className="mt-4 sameFont">Cloud Storage CSV Upload</p>
 
       <div className="d-flex flex-column files">
         {/*<Dropdown className="mt-4 mb-5">
@@ -172,7 +172,7 @@ export const GCloud = () => {
                     submitFile("Mapping");
                   }}
                 >
-                  <i class="fas fa-upload"></i> Upload
+                 Upload
                 </Button>
               </div>
             </Row>
@@ -194,7 +194,7 @@ export const GCloud = () => {
                     submitFile("Budget");
                   }}
                 >
-                  <i class="fas fa-upload"></i> Upload
+                  Upload
                 </Button>
               </div>
             </Row>
@@ -216,7 +216,7 @@ export const GCloud = () => {
                     submitFile("Actual");
                   }}
                 >
-                  <i class="fas fa-upload"></i> Upload
+                 Upload
                 </Button>
               </div>
             </Row>
@@ -239,7 +239,7 @@ export const GCloud = () => {
                     submitFile("Forecast");
                   }}
                 >
-                  <i class="fas fa-upload"></i> Upload
+                  Upload
                 </Button>
               </div>
             </Row>
@@ -261,7 +261,7 @@ export const GCloud = () => {
                     submitFile("Cost Optimization");
                   }}
                 >
-                  <i class="fas fa-upload"></i> Upload
+                 Upload
                 </Button>
               </div>
             </Row>
@@ -285,7 +285,7 @@ export const GCloud = () => {
                     submitFile("Mapping Other Services");
                   }}
                 >
-                  <i class="fas fa-upload"></i> Upload
+                  Upload
                 </Button>
               </div>
             </Row>

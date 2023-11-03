@@ -322,7 +322,7 @@ const [selectedCheckboxes, setSelectedCheckboxes] = useState({});
 
                     <Fragment>
 
-                    <p className="mb-0 left5">{boardTitle}</p>
+                    <p className="mb-0 left5 marginTop100">{boardTitle}</p>
                     <EmbedDashboard
                       dashboardId={selectedDashboardId}
                       showDashboardFilters={appConfig?.showDashboardFilters}

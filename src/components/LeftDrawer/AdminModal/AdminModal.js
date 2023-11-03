@@ -57,7 +57,7 @@ export const AdminModal = ({ isOpen, setIsOpen, appConfig, refreshPayload }) => 
 
 
   return (
-    <Dialog open={isOpen} fullWidth maxWidth="none">
+    <Dialog open={isOpen} fullWidth maxWidth="none" id="adminModal">
       <DialogTitle>
         <Stack
           id="center"

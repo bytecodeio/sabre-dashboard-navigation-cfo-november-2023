@@ -646,6 +646,7 @@ export const AppConfig = ({
           Cancel
         </Button>
         <LoadingButton
+          id="sparkReverse"
           loading={isSavingConfig}
           variant="contained"
           onClick={() => saveConfigChanges(tempAppConfig)}
